@@ -1,0 +1,76 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: #320b86; /* Deep purple, similar to the official GraphQL color */
+  color: #ffffff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.doc-sidebar {
+  width: 200px;
+  background: #fff;
+  padding: 20px;
+  height: 100vh; /* Full view height */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.doc-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.doc-sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.doc-sidebar ul li a:hover {
+  background-color: #eee;
+}
+
+.doc-content {
+  flex: 1;
+  padding: 20px;
+  background: #fff;
+  overflow: auto;
+}
+
+.doc-content section {
+  margin-bottom: 20px;
+}
+
+.doc-content h2 {
+  background: #eeeeee; /* Light grey to differentiate sections */
+  color: #333;
+  padding: 10px;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .doc-sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .doc-content {
+    padding: 20px;
+  }
+}
