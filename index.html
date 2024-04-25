@@ -7,57 +7,331 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
+    <header class="main-header">
       <h1>GraphQL Documentation</h1>
     </header>
     <div class="container">
-      <nav class="doc-sidebar">
+      <nav class="doc-sidebar" id="navbar">
+        <header><h2>GraphQL Docs</h2></header>
         <ul>
-          <li><a href="#introduction">Introduction</a></li>
-          <li><a href="#getting-started">Getting Started</a></li>
-          <li><a href="#schema-design">Schema Design</a></li>
-          <li><a href="#queries">Queries</a></li>
-          <li><a href="#mutations">Mutations</a></li>
-          <li><a href="#subscriptions">Subscriptions</a></li>
+          <li><a class="nav-link" href="#introduction">Introduction</a></li>
+          <li>
+            <a class="nav-link" href="#getting_started">Getting Started</a>
+          </li>
+          <li><a class="nav-link" href="#schema_design">Schema Design</a></li>
+          <li><a class="nav-link" href="#queries">Queries</a></li>
+          <li><a class="nav-link" href="#mutations">Mutations</a></li>
+          <li><a class="nav-link" href="#subscriptions">Subscriptions</a></li>
         </ul>
       </nav>
-      <main class="doc-content">
-        <section id="introduction">
-          <h2>Introduction</h2>
+      <main id="main-doc">
+        <section id="introduction" class="main-section">
+          <header><h2>Introduction</h2></header>
           <p>
-            This section provides an overview of GraphQL, including its core
-            features and advantages over REST.
+            GraphQL is a query language for APIs and a runtime for executing
+            those queries by using a type system you define for your data.
+            GraphQL isn't tied to any specific database or storage engine and is
+            instead backed by your existing code and data.
+          </p>
+          <h3>Why GraphQL?</h3>
+          <p>
+            GraphQL allows clients to request exactly what they need, making it
+            easier to evolve APIs over time. Here are some reasons why
+            developers choose GraphQL:
+          </p>
+          <ul>
+            <li>
+              <strong>Efficient Data Loading:</strong> Allows clients to get all
+              the data they need in a single request.
+            </li>
+            <li>
+              <strong>Flexible:</strong> Clients can ask for exactly what they
+              need, no more and no less.
+            </li>
+            <li>
+              <strong>Strongly Typed:</strong> Every API is defined by a schema
+              using a type system.
+            </li>
+            <li>
+              <strong>Real-time:</strong> Supports real-time updates with
+              subscriptions.
+            </li>
+            <li>
+              <strong>Evolving APIs without Versioning:</strong> GraphQL enables
+              seamless evolution of APIs by allowing the addition of new fields
+              or types without breaking existing clients. This eliminates the
+              need for versioning and ensures a smooth transition.
+            </li>
+          </ul>
+          <p>
+            GraphQL has been developed internally by Facebook in 2012 before
+            being publicly released in 2015. It has since been adopted by
+            various companies all over the world and has a large and active
+            community.
           </p>
         </section>
-        <section id="getting-started">
-          <h2>Getting Started</h2>
-          <p>Basic setup and how to start using GraphQL in your projects.</p>
-        </section>
-        <section id="schema-design">
-          <h2>Schema Design</h2>
+        <section id="getting_started" class="main-section">
+          <header><h2>Getting Started</h2></header>
           <p>
-            Guidelines and best practices for designing a robust GraphQL schema.
+            This section helps you set up a basic GraphQL server and write your
+            first query.
+          </p>
+
+          <h3>Step 1: Installing GraphQL</h3>
+          <p>
+            You can use a variety of languages to create a GraphQL server. For
+            this example, we will use Node.js with Express and Apollo Server.
+          </p>
+          <pre><code>npm install apollo-server express graphql</code></pre>
+
+          <h3>Step 2: Creating a Simple GraphQL Server</h3>
+          <p>Set up a basic server using the following Node.js code:</p>
+          <pre><code>const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
+
+const typeDefs = gql\`
+  type Query {
+    hello: String
+  }
+\`;
+
+const resolvers = {
+    Query: {
+        hello: () => 'Hello world!'
+    }
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen({ port: 4000 }, () =>
+  console.log('Now browse to http://localhost:4000' + server.graphqlPath)
+);
+</code></pre>
+
+          <h3>Step 3: Writing Your First Query</h3>
+          <p>
+            Access your server at
+            <a href="http://localhost:4000/graphql"
+              >http://localhost:4000/graphql</a
+            >
+            and enter the following query:
+          </p>
+          <pre><code>{
+  hello
+}</code></pre>
+          <p>This query will return "Hello world!" from the server.</p>
+        </section>
+        <section id="schema_design" class="main-section">
+          <header><h2>Schema Design</h2></header>
+          <p>
+            Designing a GraphQL schema is about defining the types and the
+            relationships between those types. This is the backbone of your
+            GraphQL API.
+          </p>
+
+          <h3>Basic Concepts</h3>
+          <p>
+            A GraphQL schema is created by defining types and the fields on
+            those types. Here are the primary components:
+          </p>
+          <ul>
+            <li>
+              <strong>Type:</strong> A type is an object that represents a
+              collection of fields.
+            </li>
+            <li>
+              <strong>Field:</strong> Each field on a GraphQL object type can
+              return a specific type, and each field can have zero or more
+              arguments.
+            </li>
+            <li>
+              <strong>Query and Mutation:</strong> The entry point for all
+              GraphQL requests.
+            </li>
+          </ul>
+
+          <h3>Example Schema</h3>
+          <p>
+            Here's a simple example of what a GraphQL schema might look like:
+          </p>
+          <pre><code>type Query {
+    users: [User]
+    user(id: ID!): User
+}
+
+type User {
+    id: ID
+    name: String
+    age: Int
+    friends: [User]
+}</code></pre>
+
+          <h3>Best Practices</h3>
+          <p>
+            When designing a GraphQL schema, consider the following best
+            practices:
+          </p>
+          <ul>
+            <li>Use descriptive names for types and fields.</li>
+            <li>
+              Design your schema according to the needs of your client
+              applications.
+            </li>
+            <li>Use custom scalar types when necessary.</li>
+            <li>Avoid over-fetching with appropriate field selections.</li>
+            <li>
+              Utilize interfaces and union types to handle complex type
+              hierarchies.
+            </li>
+          </ul>
+        </section>
+        <section id="queries" class="main-section">
+          <header><h2>Queries</h2></header>
+          <p>
+            Queries are used to read or fetch values in a GraphQL API. A query
+            is structured like a JSON object but without values, indicating what
+            data the client wants to fetch.
+          </p>
+
+          <h3>Basic Query Structure</h3>
+          <p>A basic query in GraphQL might look like this:</p>
+          <pre><code>{
+  users {
+    id
+    name
+    email
+  }
+}</code></pre>
+
+          <h3>Query with Arguments</h3>
+          <p>
+            Queries can also include arguments to fetch data according to
+            specific requirements:
+          </p>
+          <pre><code>{
+  user(id: "1") {
+    id
+    name
+    email
+  }
+}</code></pre>
+
+          <h3>Using Aliases</h3>
+          <p>
+            Aliases can be used when you need to include the same field with
+            different arguments:
+          </p>
+          <pre><code>{
+  oneUser: user(id: "1") {
+    name
+  }
+  anotherUser: user(id: "2") {
+    name
+  }
+}</code></pre>
+
+          <h3>Utilizing Fragments</h3>
+          <p>Fragments allow for reusing pieces of query logic:</p>
+          <pre><code>fragment userInfo on User {
+  id
+  name
+  email
+}
+
+{
+  user(id: "1") {
+    ...userInfo
+  }
+  user(id: "2") {
+    ...userInfo
+  }
+}</code></pre>
+
+          <p>
+            This section shows how flexible and powerful GraphQL queries can be,
+            enabling precise and efficient data fetching.
           </p>
         </section>
-        <section id="queries">
-          <h2>Queries</h2>
+        <section id="mutations" class="main-section">
+          <header><h2>Mutations</h2></header>
           <p>
-            How to fetch data using queries with examples of query structures
-            and operations.
+            Mutations are operations that allow you to modify server-side data –
+            similar to the POST, PUT, DELETE methods in REST APIs. In GraphQL,
+            these are explicitly separated from queries to signify data changes.
+          </p>
+
+          <h3>Basic Mutation Structure</h3>
+          <p>
+            Here is a simple example of a mutation used to create a new user:
+          </p>
+          <pre><code>mutation {
+  createUser(name: "John Doe", email: "john.doe@example.com") {
+    id
+    name
+    email
+  }
+}</code></pre>
+
+          <h3>Updating Data</h3>
+          <p>
+            Mutations are not only for creating data. Here's how you might
+            update a user's information:
+          </p>
+          <pre><code>mutation {
+  updateUser(id: "1", email: "new.email@example.com") {
+    id
+    email
+  }
+}</code></pre>
+
+          <h3>Deleting Data</h3>
+          <p>To delete data, you would define a mutation like this:</p>
+          <pre><code>mutation {
+  deleteUser(id: "1") {
+    id
+  }
+}</code></pre>
+
+          <p>
+            This section demonstrates how mutations are used to handle data
+            modifications in a GraphQL API, providing clear and functional
+            examples.
           </p>
         </section>
-        <section id="mutations">
-          <h2>Mutations</h2>
+        <section id="subscriptions" class="main-section">
+          <header><h2>Subscriptions</h2></header>
           <p>
-            Methods to modify data on the server and how mutations are
-            structured in GraphQL.
+            Subscriptions are a GraphQL feature that enables the server to send
+            data to the client in real-time whenever a specific event occurs.
+            This is typically implemented using websockets.
           </p>
-        </section>
-        <section id="subscriptions">
-          <h2>Subscriptions</h2>
+
+          <h3>Basic Subscription Structure</h3>
+          <p>Here's an example of how to subscribe to updates for new posts:</p>
+          <pre><code>subscription {
+    newPost {
+        id
+        title
+        content
+        author {
+            name
+        }
+    }
+}</code></pre>
+
+          <h3>Handling Real-Time Data</h3>
           <p>
-            Handling real-time updates in GraphQL. Examples of implementing
-            subscriptions.
+            Subscriptions allow clients to maintain a steady, real-time
+            connection to a server, which is useful for any application that
+            requires live updates, such as chat apps, live scoreboards, etc.
+          </p>
+
+          <p>
+            This section shows how GraphQL subscriptions can be utilized to
+            provide dynamic and real-time interactions within applications,
+            enhancing user experience with live data feeds.
           </p>
         </section>
       </main>

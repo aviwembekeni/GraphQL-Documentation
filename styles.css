@@ -6,7 +6,7 @@ body {
   background: #f4f4f4;
 }
 
-header {
+.main-header {
   background: #320b86; /* Deep purple, similar to the official GraphQL color */
   color: #ffffff;
   padding: 10px 20px;
@@ -43,7 +43,7 @@ header {
   background-color: #eee;
 }
 
-.doc-content {
+#main-doc {
   flex: 1;
   padding: 20px;
   background: #fff;
@@ -73,4 +73,212 @@ header {
   .doc-content {
     padding: 20px;
   }
+}
+
+#introduction {
+  background-color: #ffffff;
+  border-left: 4px solid #320b86; /* GraphQL's official deep purple */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#introduction h2 {
+  color: #320b86;
+  margin-top: 0;
+}
+
+#introduction h3 {
+  color: #333;
+}
+
+#introduction p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#introduction ul {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+#introduction li {
+  margin-bottom: 10px;
+}
+
+#introduction li strong {
+  color: #320b86;
+}
+
+#getting_started {
+  background-color: #f9f9f9;
+  border-left: 4px solid #4a90e2; /* A soft blue for differentiation */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#getting_started h2 {
+  color: #4a90e2; /* Matching the border color */
+  margin-top: 0;
+}
+
+#getting_started h3 {
+  color: #333;
+}
+
+#getting_started p,
+#getting-started pre {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#getting_started pre {
+  background-color: #eef;
+  border-left: 3px solid #4a90e2;
+  padding: 15px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#getting_started a {
+  color: #4a90e2;
+}
+
+#schema_design {
+  background-color: #fff;
+  border-left: 4px solid #e91e63; /* A bright pink for visibility */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#schema_design h2 {
+  color: #e91e63; /* Matching the border color */
+  margin-top: 0;
+}
+
+#schema_design h3 {
+  color: #333;
+}
+
+#schema_design p,
+#schema-design pre {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#schema_design ul {
+  padding-left: 20px;
+}
+
+#schema_design li {
+  margin-bottom: 10px;
+}
+
+#schema_design pre {
+  background-color: #f9f9f9;
+  border-left: 3px solid #e91e63;
+  padding: 15px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#queries {
+  background-color: #fff;
+  border-left: 4px solid #009688; /* A teal color for distinctiveness */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#queries h2 {
+  color: #009688; /* Matching the border color */
+  margin-top: 0;
+}
+
+#queries h3 {
+  color: #333;
+}
+
+#queries p,
+#queries pre {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#queries pre {
+  background-color: #f0f0f0;
+  border-left: 3px solid #009688;
+  padding: 15px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#mutations {
+  background-color: #fff;
+  border-left: 4px solid #ff5722; /* A deep orange color for visibility */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#mutations h2 {
+  color: #ff5722; /* Matching the border color */
+  margin-top: 0;
+}
+
+#mutations h3 {
+  color: #333;
+}
+
+#mutations p,
+#mutations pre {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#mutations pre {
+  background-color: #f7f7f7;
+  border-left: 3px solid #ff5722;
+  padding: 15px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#subscriptions {
+  background-color: #fff;
+  border-left: 4px solid #4caf50; /* A vibrant green color for visibility */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#subscriptions h2 {
+  color: #4caf50; /* Matching the border color */
+  margin-top: 0;
+}
+
+#subscriptions h3 {
+  color: #333;
+}
+
+#subscriptions p,
+#subscriptions pre {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+#subscriptions pre {
+  background-color: #f0f0f0;
+  border-left: 3px solid #4caf50;
+  padding: 15px;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
 }
